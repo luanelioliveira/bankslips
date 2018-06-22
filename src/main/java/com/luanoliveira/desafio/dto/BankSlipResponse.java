@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.luanoliveira.desafio.model.BankSlip;
 import com.luanoliveira.desafio.model.enuns.StatusBankSlip;
-import com.luanoliveira.desafio.util.DateUtil;
+import com.luanoliveira.desafio.util.BankSlipCalc;
 
 public class BankSlipResponse implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	DateUtil dateUtil;
+	BankSlipCalc bankSlipCalc;
 	
 	@JsonProperty("id")
 	private String id;
@@ -86,29 +86,10 @@ public class BankSlipResponse implements Serializable {
 	@JsonProperty("fine")
 	public BigDecimal getFine() {
 		if (getStatus().equals(StatusBankSlip.PENDING.toString())) {
-			return calcFine(getTotalInCents(), getDueDate());
+			return new BigDecimal(BankSlipCalc.calcFine(getTotalInCents().doubleValue(), getDueDate()));
 		} else {
 			return new BigDecimal(0);
 		}
 	}			
-
-	public BigDecimal calcFine(BigDecimal value, Date dueDate) {
-		
-		long diff = DateUtil.getDifferenceDays(dueDate, new Date(System.currentTimeMillis()));
-		Double fine = 0.0;
-		
-		if(diff > 0 && diff <= 10) {
-			fine = calcRate(value.doubleValue(), 0.005) * diff;
-		} else if (diff > 10) {
-			fine = calcRate(value.doubleValue(), 0.01) * diff;
-		}
-		
-		return new BigDecimal(fine);
-		
-	}
-	
-	public Double calcRate(Double value, Double rate) {
-		return value * rate;
-	}
 
 }
