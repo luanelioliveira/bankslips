@@ -57,12 +57,3 @@ Modify status CANCELED bankslip by id
 ```sh
 $ curl -i -X PUT -H 'Content-Type: application/json' -d '{"status":"CANCELED"}' http://localhost:8080/rest/bankslips/55627bfa-4f9e-4dbc-bf1c-bc0c30de5591
 ```
-
-
-
-
-```
-POST 127.0.0.1:8080/rest/bankslips
-Content-Type: application/json
-{"due_date": "2018-06-24", "total_in_cents" : 1000, "customer" : "Conta Azul", "status" : "PENDING"}
-```
