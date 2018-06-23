@@ -7,4 +7,5 @@ import com.luanoliveira.desafio.model.BankSlip;
 
 @Repository
 public interface BankSlipRepository extends JpaRepository<BankSlip, String> {
+
 }
