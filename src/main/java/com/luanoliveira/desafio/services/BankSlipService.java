@@ -9,13 +9,12 @@ import org.springframework.stereotype.Service;
 import com.luanoliveira.desafio.dto.BankSlipListResponse;
 import com.luanoliveira.desafio.dto.BankSlipRequest;
 import com.luanoliveira.desafio.dto.BankSlipResponse;
-import com.luanoliveira.desafio.dto.BankSlipUpdate;
+import com.luanoliveira.desafio.dto.StatusRequest;
 import com.luanoliveira.desafio.model.BankSlip;
-import com.luanoliveira.desafio.model.enuns.StatusBankSlip;
 import com.luanoliveira.desafio.repository.BankSlipRepository;
 import com.luanoliveira.desafio.services.exceptions.ObjectNotFoundException;
 import com.luanoliveira.desafio.services.exceptions.UUIDNotValidException;
-import com.luanoliveira.desafio.util.UUIDUtils;
+import com.luanoliveira.desafio.util.UUIDUtil;
 
 @Service
 public class BankSlipService {
@@ -23,25 +22,19 @@ public class BankSlipService {
 	@Autowired
 	private BankSlipRepository repo;
 	
-	@Autowired
-	private UUIDUtils uuidUtil;
-	
-	public BankSlip insert(BankSlipRequest req) {
+	public BankSlip insert(BankSlipRequest request) {
 		BankSlip bankSlip = new BankSlip();
 		bankSlip.setId(null);
-		bankSlip.setDueDate(req.getDueDate());
-		bankSlip.setTotalInCents(req.getTotalInCents());
-		bankSlip.setCustomer(req.getCustomer());
-		bankSlip.setStatus(req.getStatus());
+		bankSlip.setDueDate(request.getDueDate());
+		bankSlip.setTotalInCents(request.getTotalInCents());
+		bankSlip.setCustomer(request.getCustomer());
+		bankSlip.setStatus(request.getStatus());
 		return repo.save(bankSlip);
 	}
 
-	public BankSlip update(String id, BankSlipUpdate bankSlipUpdate) {
+	public BankSlip update(String id, StatusRequest update) {
 		BankSlip bankSlip = findById(id);
-		
-		StatusBankSlip status = StatusBankSlip.fromValue(bankSlipUpdate.getStatus());
-		
-		bankSlip.setStatus(status.toString());
+		bankSlip.setStatus(update.getStatus());
 		return repo.save(bankSlip);
 		
 	}
@@ -60,7 +53,7 @@ public class BankSlipService {
 	
 	public BankSlip findById(String id) {
 		
-		if(!uuidUtil.isValid(id)) {
+		if(!UUIDUtil.isValid(id)) {
 			throw new UUIDNotValidException("Invalid id provided - it must be a valid UUID");
 		}
 		

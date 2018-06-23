@@ -37,12 +37,20 @@ public class ResourceExceptionHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<StandardError> validation(MethodArgumentNotValidException e, HttpServletRequest req){
 		
-		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.name(), "Invalid bankslip provided.The possible reasons are:");
+		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.name(), "Invalid bankslip provided. The possible reasons are:");
 		
 		for (FieldError x : e.getBindingResult().getFieldErrors()) {
 			err.addError(x.getField(), x.getDefaultMessage());
 		}
 		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+	}
+	
+	
+	@ExceptionHandler(IllegalStateException.class)
+	public ResponseEntity<StandardError> IllegalState(IllegalStateException e, HttpServletRequest req){
+		
+		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.name(), e.getMessage());	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 	

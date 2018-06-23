@@ -7,7 +7,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.luanoliveira.desafio.model.BankSlip;
-import com.luanoliveira.desafio.model.enuns.StatusBankSlip;
+import com.luanoliveira.desafio.model.enuns.BankSlipStatus;
 import com.luanoliveira.desafio.util.BankSlipCalc;
 
 public class BankSlipResponse implements Serializable {
@@ -85,7 +85,7 @@ public class BankSlipResponse implements Serializable {
 
 	@JsonProperty("fine")
 	public BigDecimal getFine() {
-		if (getStatus().equals(StatusBankSlip.PENDING.toString())) {
+		if (getStatus().equals(BankSlipStatus.PENDING.toString())) {
 			return new BigDecimal(BankSlipCalc.calcFine(getTotalInCents().doubleValue(), getDueDate()));
 		} else {
 			return new BigDecimal(0);

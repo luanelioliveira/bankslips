@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.luanoliveira.desafio.services.validation.BankSlipInsert;
@@ -15,15 +13,12 @@ public class BankSlipRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@NotEmpty(message = "Can not be null")
 	@JsonProperty("due_date")
 	private Date dueDate;
 	
-	@NotEmpty(message = "Can not be null")
 	@JsonProperty("total_in_cents")
 	private BigDecimal totalInCents;
 	
-	@NotEmpty(message = "Can not be null")
 	@JsonProperty("customer")
 	private String customer;
 	

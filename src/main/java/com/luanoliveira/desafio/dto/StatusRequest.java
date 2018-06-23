@@ -2,19 +2,19 @@ package com.luanoliveira.desafio.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
+import com.luanoliveira.desafio.services.validation.BankSlipUpdate;
 
-public class BankSlipUpdate implements Serializable {
+@BankSlipUpdate
+public class StatusRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@NotNull(message = "status can not be null")
 	private String status;
 	
-	public BankSlipUpdate() {
+	public StatusRequest() {
 		
 	}
 
-	public BankSlipUpdate(String status) {
+	public StatusRequest(String status) {
 		this.status = status;
 	}
 

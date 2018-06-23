@@ -1,4 +1,4 @@
-package com.luanoliveira.desafio.process;
+package com.luanoliveira.desafio.unit;
 
 import java.util.Calendar;
 
@@ -6,7 +6,7 @@ import com.luanoliveira.desafio.util.BankSlipCalc;
 
 import junit.framework.TestCase;
 
-public class CalculoJurosTest extends TestCase {
+public class BankSlipCalcTest extends TestCase {
 
 	private Calendar c = Calendar.getInstance();
 	

@@ -3,6 +3,8 @@ package com.luanoliveira.desafio.controllers;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,19 +19,19 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.luanoliveira.desafio.dto.BankSlipListResponse;
 import com.luanoliveira.desafio.dto.BankSlipRequest;
 import com.luanoliveira.desafio.dto.BankSlipResponse;
-import com.luanoliveira.desafio.dto.BankSlipUpdate;
+import com.luanoliveira.desafio.dto.StatusRequest;
 import com.luanoliveira.desafio.model.BankSlip;
 import com.luanoliveira.desafio.services.BankSlipService;
 
 @RestController
-@RequestMapping(value="/rest/bankslips")
+@RequestMapping(value="/bankslips")
 public class BankSlipController {
 
 	@Autowired
 	private BankSlipService service;
 
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody BankSlipRequest bankSlipRequest){
+	public ResponseEntity<Void> insert(@Valid @RequestBody BankSlipRequest bankSlipRequest){
 		BankSlip bankSlip = service.insert(bankSlipRequest);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -51,8 +53,8 @@ public class BankSlipController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<BankSlip> update(@PathVariable String id, @RequestBody BankSlipUpdate bankSlipUpdate){
-		BankSlip bankSlip = service.update(id, bankSlipUpdate);
+	public ResponseEntity<BankSlip> update(@PathVariable String id, @Valid @RequestBody StatusRequest status){
+		BankSlip bankSlip = service.update(id, status);
 		return ResponseEntity.ok().body(bankSlip);
 	}
 	

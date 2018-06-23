@@ -10,6 +10,9 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class BankSlip implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,9 +22,17 @@ public class BankSlip implements Serializable {
 	@GeneratedValue(generator = "uuid2")
 	private String id;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonProperty("due_date")
 	private Date dueDate;
+	
+	@JsonProperty("total_in_cents")
 	private BigDecimal totalInCents;
+	
+	@JsonProperty("customer")
 	private String customer;
+	
+	@JsonProperty("status")
 	private String status;
 	
 	public BankSlip() {
