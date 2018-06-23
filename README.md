@@ -36,7 +36,7 @@ URL  | HTTP Verb | POST Body | Result
 
 You can test them using postman or any other rest client.
 
-##Testing the API using cURL
+## Testing the API using cURL
 Get all bankslips:
 ```sh
 $ curl -i -X GET http://localhost:8080/rest/bankslips 
