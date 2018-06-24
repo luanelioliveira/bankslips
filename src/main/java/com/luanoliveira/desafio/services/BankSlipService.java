@@ -23,20 +23,11 @@ public class BankSlipService {
 	private BankSlipRepository repo;
 	
 	public BankSlip insert(BankSlipRequest request) {
-		BankSlip bankSlip = new BankSlip();
-		bankSlip.setId(null);
-		bankSlip.setDueDate(request.getDueDate());
-		bankSlip.setTotalInCents(request.getTotalInCents());
-		bankSlip.setCustomer(request.getCustomer());
-		bankSlip.setStatus(request.getStatus());
-		return repo.save(bankSlip);
+		return repo.save(fromRequest(request));
 	}
 
-	public BankSlip update(String id, StatusRequest update) {
-		BankSlip bankSlip = findById(id);
-		bankSlip.setStatus(update.getStatus());
-		return repo.save(bankSlip);
-		
+	public BankSlip update(String id, StatusRequest request) {
+		return repo.save(fromRequest(id, request));	
 	}
 
 	public BankSlipResponse getDetail(String id) {
@@ -62,6 +53,22 @@ public class BankSlipService {
 			throw new ObjectNotFoundException("Bankslip not found with the specified id");
 		}
 		
+		return bankSlip;
+	}
+	
+	public BankSlip fromRequest(BankSlipRequest request) {
+		BankSlip bankSlip = new BankSlip();
+		bankSlip.setId(null);
+		bankSlip.setDueDate(request.getDueDate());
+		bankSlip.setTotalInCents(request.getTotalInCents());
+		bankSlip.setCustomer(request.getCustomer());
+		bankSlip.setStatus(request.getStatus());
+		return bankSlip;
+	}
+	
+	public BankSlip fromRequest(String id, StatusRequest request) {
+		BankSlip bankSlip = findById(id);
+		bankSlip.setStatus(request.getStatus());
 		return bankSlip;
 	}
 	

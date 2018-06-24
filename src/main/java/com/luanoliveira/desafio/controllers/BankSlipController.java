@@ -30,6 +30,12 @@ public class BankSlipController {
 	@Autowired
 	private BankSlipService service;
 
+	@GetMapping
+	public ResponseEntity<List<BankSlipListResponse>> list(){
+		List<BankSlipListResponse> bankSlips = service.list();
+		return ResponseEntity.ok().body(bankSlips) ;
+	}
+	
 	@PostMapping
 	public ResponseEntity<Void> insert(@Valid @RequestBody BankSlipRequest bankSlipRequest){
 		BankSlip bankSlip = service.insert(bankSlipRequest);
@@ -38,12 +44,6 @@ public class BankSlipController {
 				.path("/{id}").buildAndExpand(bankSlip.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
-	}
-	
-	@GetMapping
-	public ResponseEntity<List<BankSlipListResponse>> list(){
-		List<BankSlipListResponse> bankSlips = service.list();
-		return ResponseEntity.ok().body(bankSlips) ;
 	}
 	
 	@GetMapping("/{id}")

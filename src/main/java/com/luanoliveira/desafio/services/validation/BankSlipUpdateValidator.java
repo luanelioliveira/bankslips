@@ -15,8 +15,7 @@ import com.luanoliveira.desafio.util.BankSlipUtil;
 public class BankSlipUpdateValidator implements ConstraintValidator<BankSlipUpdate, StatusRequest> {
 	
 	@Override
-	public void initialize(BankSlipUpdate ann) {
-	}
+	public void initialize(BankSlipUpdate ann) {}
 
 	@Override
 	public boolean isValid(StatusRequest status, ConstraintValidatorContext context) {
