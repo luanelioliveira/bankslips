@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class UUIDUtil {
 
+	private UUIDUtil() {
+		
+	}
+	
 	public static boolean isValid(String uuidInStr) {
 		if (uuidInStr == null) return false;
 		try {

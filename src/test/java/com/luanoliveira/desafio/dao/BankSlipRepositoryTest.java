@@ -14,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.luanoliveira.desafio.BankSlipApplication;
 import com.luanoliveira.desafio.model.BankSlip;
 import com.luanoliveira.desafio.repository.BankSlipRepository;
 

@@ -9,15 +9,11 @@ public enum BankSlipStatus {
 	private String status;
 
 	private BankSlipStatus(String status) {
-		this.setStatus(status);
+		this.status = status;
 	}
 
 	public String getStatus() {
 		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public static BankSlipStatus toEnum(String status) {

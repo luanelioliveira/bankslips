@@ -14,8 +14,12 @@ import com.luanoliveira.desafio.util.BankSlipUtil;
 
 public class BankSlipInsertValidator implements ConstraintValidator<BankSlipInsert, BankSlipRequest> {
 	
+	private static final String MESSAGE_NOT_NULL = "This is a required field";
+	private static final String MESSAGE_NOT_NEGATIVE = "Can not be negative value";
+
 	@Override
 	public void initialize(BankSlipInsert ann) {
+	
 	}
 
 	@Override
@@ -24,23 +28,23 @@ public class BankSlipInsertValidator implements ConstraintValidator<BankSlipInse
 		List<FieldMessage> list = new ArrayList<>();
 		
 		if (request.getDueDate() == null) {
-			list.add(new FieldMessage("due_date", "Can not be null"));
+			list.add(new FieldMessage("due_date", MESSAGE_NOT_NULL));
 		}
 		
 		if (request.getTotalInCents() == null) {
-			list.add(new FieldMessage("total_in_cents", "Can not be null"));
+			list.add(new FieldMessage("total_in_cents", MESSAGE_NOT_NULL));
 		} else {
 			if (!BankSlipUtil.isValidTotalInCents(request.getTotalInCents().doubleValue())) {
-				list.add(new FieldMessage("total_in_cents", "Can not be negative"));
+				list.add(new FieldMessage("total_in_cents", MESSAGE_NOT_NEGATIVE));
 			}				
 		}
 		
-		if (request.getCustomer() == null) {
-			list.add(new FieldMessage("customer", "Can not be null"));
+		if (request.getCustomer() == null || request.getCustomer().equals("")) {
+			list.add(new FieldMessage("customer", MESSAGE_NOT_NULL));
 		}
 
-		if (request.getStatus() == null) {
-			list.add(new FieldMessage("status", "Can not be null"));
+		if (request.getStatus() == null || request.getStatus().equals("")) {
+			list.add(new FieldMessage("status", MESSAGE_NOT_NULL));
 		} else {
 			if (!BankSlipUtil.isValidStatus(request.getStatus())) {
 				list.add(new FieldMessage("status", "Allowed values are " + Arrays.toString(BankSlipStatus.values())));

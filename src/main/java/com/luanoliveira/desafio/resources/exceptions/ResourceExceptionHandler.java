@@ -48,49 +48,49 @@ public class ResourceExceptionHandler {
 	
 	
 	@ExceptionHandler(IllegalStateException.class)
-	public ResponseEntity<StandardError> IllegalState(IllegalStateException e, HttpServletRequest req){
+	public ResponseEntity<StandardError> illegalState(IllegalStateException e, HttpServletRequest req){
 		
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.name(), e.getMessage());	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 	
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-	public ResponseEntity<StandardError> HttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e, HttpServletRequest req){
+	public ResponseEntity<StandardError> httpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e, HttpServletRequest req){
 		
 		StandardError err = new StandardError(HttpStatus.METHOD_NOT_ALLOWED.name(), e.getMessage());	
 		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(err);
 	}
 	
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
-	public ResponseEntity<StandardError> MethodArgumentTypeMismatch(MethodArgumentTypeMismatchException e, HttpServletRequest req){
+	public ResponseEntity<StandardError> methodArgumentTypeMismatch(MethodArgumentTypeMismatchException e, HttpServletRequest req){
 		
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.name(), e.getMessage());	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 
 	@ExceptionHandler(UUIDNotValidException.class)
-	public ResponseEntity<StandardError> UUIDNotValid(UUIDNotValidException e, HttpServletRequest req){
+	public ResponseEntity<StandardError> notValidUUID(UUIDNotValidException e, HttpServletRequest req){
 		
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.name(), e.getMessage());	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 
 	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-	public ResponseEntity<StandardError> MediaTypeNotSupported(HttpMediaTypeNotSupportedException e, HttpServletRequest req){
+	public ResponseEntity<StandardError> mediaTypeNotSupported(HttpMediaTypeNotSupportedException e, HttpServletRequest req){
 		
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.name(), e.getMessage());	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 
 	@ExceptionHandler(IllegalArgumentException.class)
-	public ResponseEntity<StandardError> IllegalArgument(IllegalArgumentException e, HttpServletRequest req){
+	public ResponseEntity<StandardError> illegalArgument(IllegalArgumentException e, HttpServletRequest req){
 		
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.name(), e.getMessage());	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}	
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
-	public ResponseEntity<StandardError> HttpMessageNotReadable(HttpMessageNotReadableException e, HttpServletRequest req){
+	public ResponseEntity<StandardError> httpMessageNotReadable(HttpMessageNotReadableException e, HttpServletRequest req){
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.name(), e.getMessage());	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}	

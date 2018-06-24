@@ -46,9 +46,9 @@ public class BankSlipService {
 	
 	public List<BankSlipListResponse> list() {
 		List<BankSlip> bankSlips = repo.findAll();
-		List<BankSlipListResponse> response = bankSlips.stream()
-				.map(obj -> new BankSlipListResponse(obj)).collect(Collectors.toList());
-		return response;
+		return bankSlips.stream()
+				.map(map -> new BankSlipListResponse(map))
+				.collect(Collectors.toList());
 	}
 	
 	public BankSlip findById(String id) {

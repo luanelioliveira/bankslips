@@ -4,7 +4,10 @@ import com.luanoliveira.desafio.model.enuns.BankSlipStatus;
 
 public class BankSlipUtil {
 
-
+	private BankSlipUtil() {
+		
+	}
+	
 	public static Boolean isValidStatus(String value) {
 		for (BankSlipStatus status : BankSlipStatus.values()) {
 			if (status.getStatus().equals(value)) {

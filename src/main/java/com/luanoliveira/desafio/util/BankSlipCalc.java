@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class BankSlipCalc {
 
+	private BankSlipCalc() {
+		
+	}
+	
 	public static Double calcFine(Double value, Date dueDate) {
 		
 		Double fine = 0.0;

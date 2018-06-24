@@ -13,8 +13,6 @@ import com.luanoliveira.desafio.util.BankSlipCalc;
 public class BankSlipResponse implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	BankSlipCalc bankSlipCalc;
-	
 	@JsonProperty("id")
 	private String id;
 	
@@ -86,9 +84,9 @@ public class BankSlipResponse implements Serializable {
 	@JsonProperty("fine")
 	public BigDecimal getFine() {
 		if (getStatus().equals(BankSlipStatus.PENDING.toString())) {
-			return new BigDecimal(BankSlipCalc.calcFine(getTotalInCents().doubleValue(), getDueDate()));
+			return BigDecimal.valueOf(BankSlipCalc.calcFine(getTotalInCents().doubleValue(), getDueDate()));
 		} else {
-			return new BigDecimal(0);
+			return BigDecimal.valueOf(0);
 		}
 	}			
 

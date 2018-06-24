@@ -5,9 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,8 +28,6 @@ public class BankSlipRestPostTest extends BankSlipApplicationTests {
 	
 	private MockMvc mockMvc;
 	
-	private List<BankSlip> bankSlipList = new ArrayList<>();
-	
 	@Autowired
 	BankSlipRepository bankSlipRepository;
 	
@@ -40,8 +36,7 @@ public class BankSlipRestPostTest extends BankSlipApplicationTests {
 		
 	@Before
 	public void setup() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)	.build();
-		this.bankSlipList = bankSlipRepository.findAll();	
+		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)	.build();	
 	}
 	
 	@Test

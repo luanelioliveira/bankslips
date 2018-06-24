@@ -32,6 +32,7 @@ public class BankSlipApplicationTests {
 	@Autowired
 	BankSlipRepository bankSlipRepository;
 	
+	@SuppressWarnings("rawtypes")
 	private HttpMessageConverter mappingJackson2HttpMessageConverter;
 	
 	@Test

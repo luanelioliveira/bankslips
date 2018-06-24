@@ -85,7 +85,7 @@ public class BankSlip implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -110,28 +110,38 @@ public class BankSlip implements Serializable {
 		if (customer == null) {
 			if (other.customer != null)
 				return false;
-		} else if (!customer.equals(other.customer))
-			return false;
+		} else {
+			if (!customer.equals(other.customer)) 
+				return false;
+		}
 		if (dueDate == null) {
 			if (other.dueDate != null)
 				return false;
-		} else if (!dueDate.equals(other.dueDate))
-			return false;
+		} else {
+			if (!dueDate.equals(other.dueDate)) 
+				return false;
+		}
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
-			return false;
+		} else { 
+			if (!id.equals(other.id))
+				return false;
+		}
 		if (status == null) {
 			if (other.status != null)
 				return false;
-		} else if (!status.equals(other.status))
-			return false;
+		} else {
+			if (!status.equals(other.status))
+				return false;
+		}
 		if (totalInCents == null) {
 			if (other.totalInCents != null)
 				return false;
-		} else if (!totalInCents.equals(other.totalInCents))
-			return false;
+		} else { 
+			if (!totalInCents.equals(other.totalInCents))
+				return false;
+		}
 		return true;
 	}
 
