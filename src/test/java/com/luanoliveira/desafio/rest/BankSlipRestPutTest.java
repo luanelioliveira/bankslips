@@ -95,5 +95,23 @@ public class BankSlipRestPutTest extends BankSlipApplicationTests {
                 .content(json(new StatusRequest("TESTE"))))
                 .andExpect(status().isBadRequest());
 	}
+	
+	@Test
+    public void testStatusIdNotFoundBankSlip() throws Exception {
+        
+        mockMvc.perform(put("/bankslips/55627bfa-4f9e-4dbc-bf1c-bc0c30de5591")
+                .contentType(contentType)
+                .content(json(new StatusRequest("PAID"))))
+                .andExpect(status().isNotFound());
+	}
 
+	@Test
+    public void testStatusIdInvalidBankSlip() throws Exception {
+        
+        mockMvc.perform(put("/bankslips/9646785-d6de-484e-ae67-a4af0e18bec4")
+                .contentType(contentType)
+                .content(json(new StatusRequest("PAID"))))
+                .andExpect(status().isBadRequest());
+     
+	}
 }

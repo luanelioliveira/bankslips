@@ -55,13 +55,13 @@ public class BankSlipRestGetTest extends BankSlipApplicationTests {
 	
 	@Test
     public void testUUIDInvalidBankSlip() throws Exception {
-        mockMvc.perform(get("/bankslips/" + "9646785-d6de-484e-ae67-a4af0e18bec4"))
+        mockMvc.perform(get("/bankslips/9646785-d6de-484e-ae67-a4af0e18bec4"))
                 .andExpect(status().isBadRequest());
     }
 	
 	@Test
     public void testNotFoundBankSlip() throws Exception {
-        mockMvc.perform(get("/bankslips/" + "55627bfa-4f9e-4dbc-bf1c-bc0c30de5591"))
+        mockMvc.perform(get("/bankslips/55627bfa-4f9e-4dbc-bf1c-bc0c30de5591"))
                 .andExpect(status().isNotFound());
     }
 	
