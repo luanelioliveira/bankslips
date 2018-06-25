@@ -48,7 +48,8 @@ public class BankSlipController {
 			@ApiResponse(
 					code=200,
 					message="Return all bankslips",
-					response = BankSlipListResponse.class)
+					response = BankSlipListResponse.class,
+					responseContainer = "List")
 	})
 	@GetMapping
 	public ResponseEntity<List<BankSlipListResponse>> list(){
